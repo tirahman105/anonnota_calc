@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>AnonnoTa Calculation</title>
+  </head>
+  <body class="max-w-7xl bg-slate-100 mx-auto">
+    <header>
+      <h1 class="text-3xl text-center py-4">AnonnoTa</h1>
+    </header>
+    <main>
+      <div role="tablist" class="tabs tabs-lifted">
+        <input
+          type="radio"
+          name="my_tabs_2"
+          role="tab"
+          class="tab font-bold"
+          aria-label="Boosting"
+          checked
+        />
+        <div
+          role="tabpanel"
+          class="tab-content bg-base-100 border-base-300 rounded-box p-6"
+        >
+          <h2>Boosting Calculator</h2>
+
+          <label for="dollarAmount">Enter the dollar amount:</label>
+          <input
+            type="number"
+            id="dollarAmount"
+            class="p-4 border rounded"
+            placeholder="Enter a dollar amount"
+          />
+
+          <button class="btn bg-amber-600" onclick="calculateTotal()">
+            Calculate
+          </button>
+
+          <div id="result"></div>
+        </div>
+
+        <input
+          type="radio"
+          name="my_tabs_2"
+          role="tab"
+          class="tab font-bold"
+          aria-label="Chocolate"
+        />
+        <div
+          role="tabpanel"
+          class="tab-content bg-base-100 border-base-300 rounded-box p-6"
+        >
+          <h2>Chocolate Calculator</h2>
+
+          <label for="numChocolates">Enter the number of chocolates:</label>
+          <input
+            type="number"
+            id="numChocolates"
+            class="p-4 border rounded"
+            placeholder="Enter a number"
+          />
+
+          <button class="btn bg-amber-600" onclick="calculateChocolate()">
+            Calculate
+          </button>
+
+          <div class="bg-amber-100 p-4 rounded-md shadow" id="result"></div>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+
+    <script>
+      function calculateChocolate() {
+        // Get the user input
+        var numChocolates = parseInt(
+          document.getElementById("numChocolates").value
+        );
+
+        // Check if the input is a valid number
+        if (isNaN(numChocolates) || numChocolates <= 0) {
+          alert("Please enter a valid number greater than 0.");
+          return;
+        }
+
+        // Define the formula for chocolate calculation
+        var whiteChocolate = numChocolates * 66; // Replace with your formula
+        var darkChocolate = numChocolates * 33; // Replace with your formula
+        var milkChocolate = numChocolates * 14; // Replace with your formula
+        var totalChocolate = whiteChocolate + darkChocolate + milkChocolate;
+        // Display the result
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML =
+          "<h3 class=' mt-10'>Amount of Chocolate Needed:</h3>" +
+          "<p class='mt-10 ms-10'>Total: " +
+          totalChocolate +
+          " grams</p>" +
+          "<p class='mt-10 ms-10'>White Chocolate: " +
+          whiteChocolate +
+          " grams</p>" +
+          "<p class='mt-10 ms-10'>Dark Chocolate: " +
+          darkChocolate +
+          " grams</p>" +
+          "<p class='mt-10 ms-10'>Milk Chocolate: " +
+          milkChocolate +
+          " grams</p>";
+      }
+    </script>
+    <script>
+      function calculateTotal() {
+        // Get the user input
+        var dollarAmount = parseFloat(
+          document.getElementById("dollarAmount").value
+        );
+
+        // Check if the input is a valid number
+        if (isNaN(dollarAmount) || dollarAmount <= 0) {
+          alert("Please enter a valid dollar amount greater than 0.");
+          return;
+        }
+
+        // Calculate the total BDT amount
+        var totalBDT = dollarAmount * 150;
+
+        // Calculate the cash-out charge (1.4%)
+        var cashOutCharge = totalBDT * 0.014;
+
+        // Deduct the cash-out charge from the total BDT amount
+        var finalAmount = totalBDT + cashOutCharge;
+
+        // Display the result
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML =
+          "<h3>Total BDT Amount:</h3>" +
+          "<p class='text-green-700 font-bold text-xl'>Total BDT: " +
+          totalBDT.toFixed(2) +
+          "</p>" +
+          "<p class='text-red-500'>Cash Out Charge (1.4%): " +
+          cashOutCharge.toFixed(2) +
+          "</p>" +
+          "<p class='font-bold'>Final Amount with Cash Out Charge: " +
+          finalAmount.toFixed(2) +
+          "</p>";
+      }
+    </script>
+  </body>
+</html>
